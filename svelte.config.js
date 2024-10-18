@@ -1,7 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-const base = '/slick-portfolio-svelte';
+const base = '/portfolio-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,7 +14,13 @@ const config = {
 		}
 	},
 	kit: {
-		adapter: adapter({ fallback: '404.html' }),
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: '404.html',
+			precompress: false,
+			strict: true
+		}),
 		alias: {
 			$lib: './src/lib',
 			'@data': './src/lib/data',
