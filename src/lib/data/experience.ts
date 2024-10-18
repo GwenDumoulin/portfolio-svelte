@@ -1,12 +1,13 @@
 import Assets from './assets';
 import { getSkills } from './skills';
 import { ContractType, type Experience } from '../types';
+import { base } from '$app/paths';
 
 export const items: Array<Experience> = [
 	{
 		slug: 'projects',
 		company: 'Home',
-		description: `Creating various projects for my portfolio, and learning new frameworks. See <a href="/projects">my projects</a>`,
+		description: `Creating various projects for my portfolio, and learning new frameworks. See <a href="${base}/projects">my projects</a>`,
 		contract: ContractType.SelfEmployed,
 		type: 'Frontend Developer',
 		location: 'Paris',

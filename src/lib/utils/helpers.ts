@@ -93,7 +93,7 @@ function doesQueryExistInItemOrAttributes(
 	} else if (typeof item === 'object' && item !== null) {
 		if (item instanceof Date) {
 			const dateFormats = [
-				item.toString().toLowerCase(), // Full date string
+				item?.toString().toLowerCase(), // Full date string
 				item.toLocaleDateString('default', { month: 'long', year: 'numeric' }).toLowerCase(), // "January 2023"
 				item
 					.toLocaleDateString('default', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -111,7 +111,7 @@ function doesQueryExistInItemOrAttributes(
 			);
 		}
 	} else {
-		return item.toString().toLowerCase().includes(query);
+		return item?.toString().toLowerCase().includes(query);
 	}
 }
 
