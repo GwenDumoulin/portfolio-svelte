@@ -86,11 +86,14 @@ export interface LanguagesExperience<S extends string = string> {
 
 export interface Education<S extends string = string> extends Item<S> {
 	organization: string;
+	organizationFr?: string;
 	location: string;
 	period: {
 		from: Date;
 		to?: Date;
 	};
 	subjects: Array<string>;
+	subjectsFr?: Array<string>;
 	degree: string;
+	degreeFr?: string;
 }

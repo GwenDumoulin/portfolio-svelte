@@ -9,6 +9,7 @@
 	import type { Education } from '$lib/types';
 	import { computeExactDuration, getTimeDiff } from '$lib/utils';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
+	import { language } from '$lib/stores/language';
 
 	let search = '';
 
@@ -61,8 +62,10 @@
 									width="50"
 									class="mb-5"
 								/>
-								<div class="text-[1.3em]">{education.degree}</div>
-								<div>{education.organization}</div>
+								<div class="text-[1.3em]">
+									{$language === 'fr' ? education.degreeFr : education.degree}
+								</div>
+								<div>{$language === 'fr' ? education.organizationFr : education.organization}</div>
 								<div class="col text-[0.9em]">
 									<CardDivider />
 									<div class="row items-center gap-2">
@@ -72,14 +75,20 @@
 									<CardDivider />
 									<div class="row items-center gap-2">
 										<UIcon icon="i-carbon-time" />
-										{computeExactDuration(education.period.from, education.period.to)}
+										{computeExactDuration(education.period.from, education.period.to, $language)}
 									</div>
 									<CardDivider />
 								</div>
 								<div class="row flex-wrap gap-1">
-									{#each education.subjects as subject}
-										<Chip>{subject}</Chip>
-									{/each}
+									{#if $language === 'fr' && education.subjectsFr}
+										{#each education.subjectsFr as subject}
+											<Chip>{subject}</Chip>
+										{/each}
+									{:else}
+										{#each education.subjects as subject}
+											<Chip>{subject}</Chip>
+										{/each}
+									{/if}
 								</div>
 							</div>
 						</Card>
