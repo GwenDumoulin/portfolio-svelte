@@ -52,9 +52,9 @@
 					on:click={() => toggleLanguage()}
 				>
 					{#if $language === 'fr'}
-						<img src="/logos/english.svg" alt="English" width="20" />
+						<img src={`${base}/logos/english.svg`} alt="English" width="20" />
 					{:else}
-						<img src="/logos/french.svg" alt="French" width="20" />
+						<img src={`${base}/logos/french.svg`} alt="French" width="20" />
 					{/if}
 				</button>
 				<a
@@ -136,10 +136,10 @@
 				on:click={() => toggleLanguage()}
 			>
 				{#if $language === 'fr'}
-					<img src="/logos/english.svg" alt="English" width="20" />
+					<img src={`${base}/logos/english.svg`} alt="English" width="20" />
 					<span class="font-['inter'] tracking-[1px]">Traduire en Anglais</span>
 				{:else}
-					<img src="/logos/french.svg" alt="French" width="20" />
+					<img src={`${base}/logos/french.svg`} alt="French" width="20" />
 					<span class="font-['inter'] tracking-[1px]">Translate in French</span>
 				{/if}
 			</button>
