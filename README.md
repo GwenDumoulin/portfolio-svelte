@@ -5,8 +5,10 @@ Link to live site: https://www.foxidees.com/portfolio
 ## Features
 
 - Responsive design for various screen sizes and devices.
-- Sections for displaying personal information, resume, projects, and contact details.
-- Dynamic routing and SEO optimization with Next.js.
+- Sections for displaying personal information, skills, projects, experiences and resume.
+- Search Functionality
+- 2 Themes : dark and light
+- Change Language Functionality (english and french)
 
 ## Technology Used:
 
