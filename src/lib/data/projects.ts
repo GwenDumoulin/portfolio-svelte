@@ -154,4 +154,5 @@ export const items: Array<Project> = [
 	}
 ];
 
-export const title = 'Projects';
+export const titleEn = 'Projects';
+export const titleFr = 'Projets';

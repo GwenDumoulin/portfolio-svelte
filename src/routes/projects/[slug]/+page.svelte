@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { getAssetURL } from '$lib/data/assets';
-	import { title } from '@data/projects';
+	import { titleEn, titleFr } from '@data/projects';
 
 	import type { Project } from '$lib/types';
 
@@ -20,12 +20,15 @@
 
 	const screenshots = data.project?.screenshots ?? [];
 
-	let screenIndex: number | undefined = undefined;
+	let screenIndex: number | undefined = undefined,
+		title: string;
 
 	$: screenshot =
 		typeof screenIndex !== 'undefined' && screenshots[screenIndex]
 			? screenshots[screenIndex]
 			: undefined;
+
+	$: title = $language === 'fr' ? titleFr : titleEn;
 
 	$: computedTitle = data.project ? `${data.project.name} - ${title}` : title;
 </script>

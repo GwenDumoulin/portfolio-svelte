@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { title } from '@data/skills';
+	import { titleFr, titleEn } from '@data/skills';
 	import * as projects from '@data/projects';
 	import { experiences } from '@data/experience';
 	import { language } from '$lib/stores/language';
@@ -66,6 +66,8 @@
 
 		return out;
 	};
+
+	$: title = $language === 'fr' ? titleFr : titleEn;
 
 	$: computedTitle = data.skill ? `${data.skill.name} - ${title}` : title;
 

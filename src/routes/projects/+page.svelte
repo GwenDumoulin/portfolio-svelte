@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { items, title } from '@data/projects';
+	import { items, titleFr, titleEn } from '@data/projects';
 	import * as skills from '@data/skills';
 	import { onMount } from 'svelte';
 	import type { Project, Skill } from '$lib/types';
-
+	import { language } from '$lib/stores/language';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import ProjectCard from '$lib/components/ProjectCard/ProjectCard.svelte';
 	import SearchPage from '$lib/components/SearchPage.svelte';
@@ -69,7 +69,7 @@
 	});
 </script>
 
-<SearchPage {title} on:search={onSearch}>
+<SearchPage title={$language === 'fr' ? titleFr : titleEn} on:search={onSearch}>
 	<div class="projects-filters">
 		{#each filters as tech}
 			<Chip active={tech.isSelected} classes={'text-0.8em'} on:click={() => onSelected(tech.slug)}

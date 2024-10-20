@@ -1,11 +1,12 @@
 <script>
-	import { data, dataFrench, title } from '@data/resume';
+	import { data, dataFrench, titleEn, titleFr } from '@data/resume';
 
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import CommonPage from '$lib/components/CommonPage.svelte';
+	import { language } from '$lib/stores/language';
 </script>
 
-<CommonPage {title}>
+<CommonPage title={$language === 'fr' ? titleFr : titleEn}>
 	<div class="resume">
 		{#if data}
 			<a href={data} download>

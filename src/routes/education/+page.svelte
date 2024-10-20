@@ -5,7 +5,7 @@
 	import SearchPage from '$lib/components/SearchPage.svelte';
 	import { getAssetURL } from '$lib/data/assets';
 
-	import { title, items } from '@data/education';
+	import { titleEn, titleFr, items } from '@data/education';
 	import type { Education } from '$lib/types';
 	import { computeExactDuration, getTimeDiff } from '$lib/utils';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
@@ -31,7 +31,7 @@
 	};
 </script>
 
-<SearchPage {title} {search} on:search={onSearch}>
+<SearchPage title={$language === 'fr' ? titleFr : titleEn} {search} on:search={onSearch}>
 	<div class="col items-center relative mt-10 flex-1">
 		{#if result.length === 0}
 			<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)] flex-1">

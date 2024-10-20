@@ -34,4 +34,5 @@ export const items: Array<Education> = [
 	}
 ];
 
-export const title = 'Education';
+export const titleEn = 'Education';
+export const titleFr = 'Éducation';
