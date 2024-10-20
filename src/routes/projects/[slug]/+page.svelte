@@ -14,6 +14,7 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
 	import Screenshot from '$lib/components/Screenshot/Screenshot.svelte';
+	import { language } from '$lib/stores/language';
 
 	export let data: { project?: Project };
 
@@ -79,8 +80,10 @@
 			</Banner>
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
-					{#if data.project.description}
-						<Markdown content={data.project.description} />
+					{#if data.project.description && data.project.descriptionFr}
+						<Markdown
+							content={$language === 'fr' ? data.project.descriptionFr : data.project.description}
+						/>
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
@@ -93,7 +96,7 @@
 				</div>
 				{#if screenshots.length > 0}
 					<div
-						class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10 "
+						class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10"
 					>
 						{#each screenshots as item, index}
 							<!-- svelte-ignore a11y-no-static-element-interactions -->

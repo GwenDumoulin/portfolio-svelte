@@ -11,6 +11,7 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
+	import { language } from '$lib/stores/language';
 
 	export let project: Project;
 	$: months = countMonths(project.period.from, project.period.to);
@@ -19,10 +20,10 @@
 	// 	project.period.from,
 	// 	project.period.to ?? new Date(Date.now() + 1000 * 60 * 60 * 24)
 	// )}`;
-	$: period = computeExactDuration(project.period.from, project.period.to);
-	$: from = `${getMonthName(project.period.from.getMonth())} ${project.period.from.getFullYear()}`;
+	$: period = computeExactDuration(project.period.from, project.period.to, $language);
+	$: from = `${getMonthName(project.period.from.getMonth(), $language)} ${project.period.from.getFullYear()}`;
 	$: to = project.period.to
-		? `${getMonthName(project.period.to.getMonth())} ${project.period.to.getFullYear()}`
+		? `${getMonthName(project.period.to.getMonth(), $language)} ${project.period.to.getFullYear()}`
 		: 'now';
 </script>
 
@@ -51,7 +52,7 @@
 	</div>
 	<div class="col sm:h-100px md:h-160px">
 		<p class="text-[0.9em] text-[var(--secondary-text)] m-t-20px m-b-40px flex-1 line-clamp-3">
-			{project.shortDescription}
+			{$language === 'fr' ? project.shortDescriptionFr : project.shortDescription}
 		</p>
 	</div>
 	<div class="row justify-between text-0.8em font-400">

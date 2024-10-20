@@ -9,7 +9,10 @@ export const items: Array<Project> = [
 		color: '#5e95e3',
 		description:
 			'This project was completed as part of the React course from OpenCkassrooms. The goal of this project was to build the web page of a freelance agency, using React, Create React App, React Router, Styled Components and Jest.',
+		descriptionFr:
+			"Ce projet a été réalisé dans le cadre du cours sur React créé et diffusé par OpenClassrooms. L'objectif de ce projet était de développer la page web d'une agence freelance, en utilisant React, Create React App, React Router, Styled Components et Jest.",
 		shortDescription: 'Creation of the web page of a freelance agency, using React.',
+		shortDescriptionFr: "Création de la page web d'une agence freelance, en utilisant React.",
 		links: [
 			{ to: 'https://github.com/GwenDumoulin/shiny-agency', label: 'GitHub' },
 			{ to: 'https://www.foxidees.com/shiny-agency/', label: 'Website' }
@@ -50,8 +53,12 @@ export const items: Array<Project> = [
 		color: '#5e95e3',
 		description:
 			'Kasa is a web application that I developed as part of my training on React. Based on a provided mockup, I completed the integration and development of this apartment rental platform using React and Next.js. I also used TailwindCSS for styling management and TypeScript. This project allowed me to gain a better understanding of the key concepts of Next.js and TypeScript, as well as to enhance my front-end development skills.',
+		descriptionFr:
+			"Kasa est une application web que j'ai développée dans le cadre de ma formation sur React. À partir d'une maquette fournie, j'ai réalisé l'intégration et le développement de cette plateforme de location d'appartements en utilisant React et Next.js. J'ai également utilisé TailwindCSS pour la gestion des styles et TypeScript. Ce projet m'a permis de mieux comprendre les concepts clés de Next.js et TypeScript, ainsi que de développer mes compétences en développement front-end.",
 		shortDescription:
 			'Integration and development of an apartment rental platform using React and Next.js.',
+		shortDescriptionFr:
+			"Intégration et développement d'une plateforme de location d'appartements, construite avec React et Next.js.",
 		links: [
 			{ to: 'https://github.com/GwenDumoulin/kasa', label: 'GitHub' },
 			{ to: 'https://www.foxidees.com/kasa/', label: 'Website' }
@@ -84,7 +91,10 @@ export const items: Array<Project> = [
 		color: '#5e95e3',
 		description:
 			'Crafted with a focus on responsiveness and functionality, my portfolio allows me to showcase personal information, resume, projects, and contact details. Leveraging the power of Next.js for dynamic routing and SEO optimization, this portfolio rank high on search engines. It was created with a technology stack including React, Next.js, MarkDown, HTML/CSS/JS and Tailwind CSS.<br>I also added a functionality to translate it in French.',
+		descriptionFr:
+			"Conçu avec un accent sur la réactivité et la fonctionnalité, mon portfolio me permet de présenter des informations personnelles, mon CV, mes projets et mes coordonnées. En tirant parti de la puissance de Next.js pour le routage dynamique et l'optimisation SEO, ce portfolio est bien référencé sur les moteurs de recherche. Il a été créé avec une stack technologique comprenant React, Next.js, MarkDown, HTML/CSS/JS et Tailwind CSS.<br>J'ai aussi ajouté une fonctionalité pour traduire le site en Français.",
 		shortDescription: 'A portfolio made with Next.js.',
+		shortDescriptionFr: 'Un portfolio fait avec Next.js.',
 		links: [
 			{ to: 'https://github.com/GwenDumoulin/portfolio', label: 'GitHub' },
 			{ to: 'https://www.foxidees.com/portfolio/', label: 'Website' }
@@ -120,7 +130,9 @@ export const items: Array<Project> = [
 		slug: 'portfolio-svelte',
 		color: '#ff3e00',
 		description: 'A portfolio made with Typescript, SvelteKit, Tailwind CSS and Sass.',
+		descriptionFr: 'Un portfolio fait avec Typescript, SvelteKit, Tailwind CSS et Sass.',
 		shortDescription: 'A portfolio made with Typescript and SvelteKit.',
+		shortDescriptionFr: 'Un portfolio fait avec Typescript et SvelteKit.',
 		links: [
 			{ to: 'https://github.com/GwenDumoulin/portfolio-svelte', label: 'GitHub' },
 			{ to: 'https://www.foxidees.com/portfolio-svelte/', label: 'Website' }

@@ -2,7 +2,6 @@
 	import { items, title } from '@data/projects';
 	import * as skills from '@data/skills';
 	import { onMount } from 'svelte';
-
 	import type { Project, Skill } from '$lib/types';
 
 	import Chip from '$lib/components/Chip/Chip.svelte';

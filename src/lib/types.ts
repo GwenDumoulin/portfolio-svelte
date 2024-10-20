@@ -37,7 +37,9 @@ export interface Item<S extends string = string> {
 	name: string;
 	logo: Asset;
 	shortDescription: string;
+	shortDescriptionFr?: string;
 	description: string;
+	descriptionFr?: string;
 	screenshots?: Array<{ src: string; label: string }>;
 }
 
