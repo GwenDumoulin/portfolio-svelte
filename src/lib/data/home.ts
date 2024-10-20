@@ -7,7 +7,7 @@ export const name = 'Gwenaëlle';
 
 export const lastName = 'Dumoulin';
 
-export const description = 'JavaScript | TypeScript | React | Next.js | Vue.js';
+export const description = 'JavaScript | TypeScript | React | Next.js';
 
 export const links: Array<{ platform: Platform; link: string }> = [
 	{ platform: Platform.GitHub, link: 'https://github.com/GwenDumoulin' },
@@ -26,7 +26,6 @@ export const skills = getSkills(
 	'css',
 	'html',
 	'reactjs',
-	'sass',
 	'svelte',
 	'ts',
 	'jquery',

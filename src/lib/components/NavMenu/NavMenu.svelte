@@ -1,13 +1,10 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { theme, toggleTheme } from '$lib/stores/theme';
+	import { language, toggleLanguage } from '$lib/stores/language';
 	import { items } from '@data/navbar';
 	import * as HOME from '@data/home';
-
 	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
-
-	$: currentRoute = $page.url.pathname;
 
 	let expanded = false;
 
@@ -18,6 +15,8 @@
 			expanded = v;
 		}
 	};
+
+	$: currentItemsData = $language === 'fr' ? items.fr : items.en;
 </script>
 
 <div class="nav-menu">
@@ -37,7 +36,7 @@
 			{HOME.lastName}
 		</div>
 		<div class="flex-row flex-1 self-center h-full justify-center hidden md:flex">
-			{#each items as item (item.title)}
+			{#each currentItemsData as item (item.title)}
 				<a href={`${base}${item.to}`} class="nav-menu-item !text-[var(--secondary-text)]">
 					<UIcon icon={item.icon} classes="text-1.3em" />
 					<span class="nav-menu-item-label">{item.title}</span>
@@ -48,6 +47,16 @@
 			class="row h-full justify-center items-stretch m-l-auto md:m-l-0 w-auto md:w-150px gap-1 text-1.15em"
 		>
 			<div class="row hidden md:flex">
+				<button
+					class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2 pt-1"
+					on:click={() => toggleLanguage()}
+				>
+					{#if $language === 'fr'}
+						<img src="/logos/english.svg" alt="English" width="20" />
+					{:else}
+						<img src="/logos/french.svg" alt="French" width="20" />
+					{/if}
+				</button>
 				<a
 					href={`${base}/search`}
 					class="text-inherit col-center self-stretch px-2 hover:bg-[color:var(--main-hover)]"
@@ -78,7 +87,7 @@
 	</nav>
 	<div class={`nav-menu-mobile ${expanded ? 'nav-menu-mobile-open' : ''} md:hidden`}>
 		<div class="flex-col flex-1 self-center h-full justify-center m-t-7">
-			{#each items as item}
+			{#each currentItemsData as item}
 				<a
 					href={`${base}${item.to}`}
 					class="nav-menu-item !text-[var(--secondary-text)] gap-5"

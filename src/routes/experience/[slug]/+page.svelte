@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { getAssetURL } from '$lib/data/assets';
-	import { title } from '@data/experience';
+	import { titleExp } from '@data/experience';
+	import { language } from '$lib/stores/language';
 	import { getTimeDiff } from '$lib/utils';
 
 	import type { Experience } from '$lib/types';
@@ -15,37 +16,42 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
 
-	export let data: { experience?: Experience };
+	export let data: { experienceFr?: Experience; experienceEn?: Experience };
 
-	$: computedTitle = data.experience ? `${data.experience.name} - ${title}` : title;
+	let dataLang: Experience | undefined, titleLanguage: string, computedTitle: string;
+	$: {
+		dataLang = $language === 'fr' ? data.experienceFr : data.experienceEn;
+		titleLanguage = $language === 'fr' ? titleExp.fr : titleExp.en;
+		computedTitle = dataLang ? `${dataLang.name} - ${titleLanguage}` : titleLanguage;
+	}
 </script>
 
 <TabTitle title={computedTitle} />
 
 <div class="pb-10 overflow-x-hidden col flex-1">
-	{#if data.experience === undefined}
+	{#if dataLang === undefined}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
-			<p class="font-300">Could not load experience data...</p>
+			<p class="font-300">Could not load experience dataLang...</p>
 		</div>
 	{:else}
 		<div class="flex flex-col items-center overflow-x-hidden">
-			<Banner img={getAssetURL(data.experience.logo)}>
+			<Banner img={getAssetURL(dataLang.logo)}>
 				<div class="col-center p-y-20">
 					<div class="text-0.9em">
-						<MainTitle>{data.experience.name}</MainTitle>
+						<MainTitle>{dataLang.name}</MainTitle>
 					</div>
 					<p class="font-300 text-[var(--tertiary-text)] m-y-2 text-center">
-						{data.experience.company} · {data.experience.location} · {data.experience.type}
+						{dataLang.company} · {dataLang.location} · {dataLang.type}
 					</p>
 					<p class="font-300 text-0.9em text-[var(--tertiary-text)] m-y-2 text-center">
-						{getTimeDiff(data.experience.period.from, data.experience.period.to)}
+						{getTimeDiff(dataLang.period.from, dataLang.period.to, $language)}
 					</p>
 					<div class="w-75%">
 						<CardDivider />
 					</div>
 					<div class="row-center flex-wrap text-[0.9em] text-[var(--tertiary-text)] m-b-2">
-						{#each data.experience.links as item}
+						{#each dataLang.links as item}
 							<Chip href={item.to}>
 								<div class="row-center gap-2">
 									<UIcon icon="i-carbon-link" />
@@ -55,7 +61,7 @@
 						{/each}
 					</div>
 					<div class="row-center flex-wrap m-b-2">
-						{#each data.experience.skills as item}
+						{#each dataLang.skills as item}
 							<Chip
 								classes="inline-flex flex-row items-center justify-center"
 								href={`${base}/skills/${item.slug}`}
@@ -75,10 +81,8 @@
 			</Banner>
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
-					{#if data.experience.description}
-						<Markdown
-							content={data.experience.description ?? 'This place is yet to be filled...'}
-						/>
+					{#if dataLang.description}
+						<Markdown content={dataLang.description ?? 'This place is yet to be filled...'} />
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />

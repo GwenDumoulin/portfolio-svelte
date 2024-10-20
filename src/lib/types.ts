@@ -21,6 +21,15 @@ export enum ContractType {
 	Internship = 'Internship'
 }
 
+export enum ContractTypeFrench {
+	FullTime = 'Temps plein',
+	PartTime = 'Teamps partiel',
+	SelfEmployed = 'Indépendant',
+	Freelance = 'Freelance',
+	Contract = 'Contrat',
+	Internship = 'Stage'
+}
+
 export type Asset = string | { light: string; dark: string };
 
 export interface Item<S extends string = string> {
@@ -66,7 +75,11 @@ export interface Project<S extends string = string> extends Item<S> {
 export interface Experience<S extends string = string> extends Project<S> {
 	company: string;
 	location: string;
-	contract: ContractType;
+	contract: ContractType | ContractTypeFrench;
+}
+export interface LanguagesExperience<S extends string = string> {
+	en: Array<Experience<S>>;
+	fr: Array<Experience<S>>;
 }
 
 export interface Education<S extends string = string> extends Item<S> {

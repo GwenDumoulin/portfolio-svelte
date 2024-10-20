@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { title } from '@data/skills';
 	import * as projects from '@data/projects';
-	import * as experiences from '@data/experience';
+	import { experiences } from '@data/experience';
+	import { language } from '$lib/stores/language';
 
 	import { base } from '$app/paths';
 	import { getAssetURL } from '$lib/data/assets';
@@ -16,6 +17,9 @@
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
+
+	let experiencesLanguage;
+	$: experiencesLanguage = $language === 'fr' ? experiences.fr : experiences.en;
 
 	type Related = {
 		display: string;
@@ -48,7 +52,7 @@
 			}
 		});
 
-		experiences.items.forEach((item) => {
+		experiencesLanguage.forEach((item) => {
 			if (item.skills.some((tech) => tech.slug === skill.slug)) {
 				out.push({
 					img: getAssetURL(item.logo),
@@ -96,7 +100,7 @@
 			<div class="self-stretch mb-2">
 				<CardDivider />
 			</div>
-			<div class="flex flex-row gap-1 self-stretch flex-wrap ">
+			<div class="flex flex-row gap-1 self-stretch flex-wrap">
 				<div class="px-10px">
 					{#each related as item}
 						<Chip

@@ -3,7 +3,8 @@
 	import { filterItemsByQuery, type ItemOrSkill } from '$lib/utils/helpers';
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
-	import * as experiences from '@data/experience';
+	import { experiences } from '@data/experience';
+	import { language } from '$lib/stores/language';
 	import * as projects from '@data/projects';
 	import * as skills from '@data/skills';
 
@@ -12,6 +13,9 @@
 	import SearchPage from '$lib/components/SearchPage.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
+
+	let experiencesLanguage;
+	$: experiencesLanguage = $language === 'fr' ? experiences.fr : experiences.en;
 
 	type SearchResultItem = {
 		icon: Icon;
@@ -57,7 +61,7 @@
 		);
 
 		result.push(
-			...filterItemsByQuery(experiences.items, query).map<SearchResultItem>((data) => ({
+			...filterItemsByQuery(experiencesLanguage, query).map<SearchResultItem>((data) => ({
 				data,
 				icon: 'i-carbon-development',
 				name: `${data.name} @ ${data.company}`,

@@ -20,30 +20,51 @@ export const countMonths = (from: Date, to: Date = new Date()): number => {
 	return firstYear + wholeYears + newYear + 1;
 };
 
-export const getMonthName = (index: number): string => {
-	const monthNames = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	];
+export const getMonthName = (index: number, language: string): string => {
+	const monthNames = {
+		en: [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		],
+		fr: [
+			'Janvier',
+			'Février',
+			'Mars',
+			'Avril',
+			'Mai',
+			'Juin',
+			'Juillet',
+			'Août',
+			'Septembre',
+			'Octobre',
+			'Novembre',
+			'Decembre'
+		]
+	};
+	let monthname = language === 'fr' ? monthNames.fr : monthNames.en;
 
-	return monthNames[index];
+	return monthname[index];
 };
 
 export const useImage = (url: string, base: string): string => `${base}${url}`;
 
 export const useTitle = (title: string, suffix: string) => `${title} | ${suffix}`;
 
-export function getTimeDiff(date1: Date, date2 = new Date(Date.now() + 1000 * 60 * 60 * 24)) {
+export function getTimeDiff(
+	date1: Date,
+	date2 = new Date(Date.now() + 1000 * 60 * 60 * 24),
+	language: string
+) {
 	const d1 = dayjs(date1);
 	const d2 = dayjs(date2);
 
@@ -53,22 +74,22 @@ export function getTimeDiff(date1: Date, date2 = new Date(Date.now() + 1000 * 60
 	let u = 'day';
 
 	if (duration.as('days') <= 7) {
-		u = 'day';
+		u = language === 'fr' ? 'jour' : 'day';
 		n = duration.as('days');
 	} else if (duration.as('months') <= 1) {
-		u = 'week';
+		u = language === 'fr' ? 'semaine' : 'week';
 		n = duration.as('weeks');
 	} else if (duration.as('years') <= 1) {
-		u = 'month';
+		u = language === 'fr' ? 'mois' : 'month';
 		n = duration.as('months');
 	} else {
-		u = 'year';
+		u = language === 'fr' ? 'année' : 'year';
 		n = duration.as('years');
 	}
 
 	n = Math.trunc(n);
 
-	return `${Math.trunc(n)} ${u}${n > 1 ? 's' : ''}`;
+	return `${Math.trunc(n)} ${u}${n > 1 && u != 'mois' ? 's' : ''}`;
 }
 
 export type ItemOrSkill = Item | Skill;
@@ -120,7 +141,7 @@ const WEEK = 7 * 24 * 60 * 60 * 1000;
 const MONTH = 30 * 24 * 60 * 60 * 1000;
 const YEAR = 365 * 24 * 60 * 60 * 1000;
 
-export function computeExactDuration(from: Date, to: Date = new Date()): string {
+export function computeExactDuration(from: Date, to: Date = new Date(), language: string): string {
 	const fromMs = from.getTime();
 	const toMs = to.getTime();
 
@@ -132,29 +153,38 @@ export function computeExactDuration(from: Date, to: Date = new Date()): string 
 
 	if (years >= 1) {
 		remaining = remaining % YEAR;
-		display.push(`${Math.trunc(years)} year${years >= 2 ? 's' : ''}`);
+		language === 'fr'
+			? display.push(`${Math.trunc(years)} an${years >= 2 ? 's' : ''}`)
+			: display.push(`${Math.trunc(years)} year${years >= 2 ? 's' : ''}`);
 	}
 
 	const months = remaining / MONTH;
 	if (months >= 1) {
 		remaining = remaining % MONTH;
-		display.push(`${Math.trunc(months)} month${months >= 2 ? 's' : ''}`);
+		language === 'fr'
+			? display.push(`${Math.trunc(months)} mois`)
+			: display.push(`${Math.trunc(months)} month${months >= 2 ? 's' : ''}`);
 	}
 
 	const weeks = remaining / WEEK;
 	if (weeks >= 1) {
 		remaining = remaining % WEEK;
-		display.push(`${Math.trunc(weeks)} week${weeks >= 2 ? 's' : ''}`);
+		language === 'fr'
+			? display.push(`${Math.trunc(weeks)} semaine${weeks >= 2 ? 's' : ''}`)
+			: display.push(`${Math.trunc(weeks)} week${weeks >= 2 ? 's' : ''}`);
 	}
 
 	const days = remaining / DAY;
 	if (days >= 1) {
 		remaining = remaining % DAY;
-		display.push(`${Math.trunc(days)} day${days >= 2 ? 's' : ''}`);
+		language === 'fr'
+			? display.push(`${Math.trunc(days)} jour${days >= 2 ? 's' : ''}`)
+			: display.push(`${Math.trunc(days)} day${days >= 2 ? 's' : ''}`);
 	}
 
 	if (display.length === 0) {
-		return '1 day';
+		let returnValue = language === 'fr' ? '1 jour' : '1 day';
+		return returnValue;
 	}
 
 	return display
@@ -162,7 +192,8 @@ export function computeExactDuration(from: Date, to: Date = new Date()): string 
 			if (display.length === 1 || index === display.length - 1) return it;
 
 			if (index === display.length - 2) {
-				return `${it} and`;
+				let returnValue = language === 'fr' ? `${it} et` : `${it} and`;
+				return returnValue;
 			}
 
 			return `${it},`;
