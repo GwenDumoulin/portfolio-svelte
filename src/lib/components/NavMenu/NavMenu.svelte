@@ -105,7 +105,11 @@
 				on:click={() => toggleExpanded(false)}
 			>
 				<UIcon icon="i-carbon-search" />
-				<span>Search</span>
+				{#if $language === 'fr'}
+					<span>Rechercher</span>
+				{:else}
+					<span>Search</span>
+				{/if}
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer px-6 py-3 gap-2 row hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
@@ -113,10 +117,30 @@
 			>
 				{#if $theme}
 					<UIcon icon="i-carbon-moon" />
-					<span>Dark Theme</span>
+					{#if $language === 'fr'}
+						<span class="font-['inter'] tracking-[1px]">Thème sombre</span>
+					{:else}
+						<span class="font-['inter'] tracking-[1px]">Dark Theme</span>
+					{/if}
 				{:else}
 					<UIcon icon="i-carbon-sun" />
-					<span>Light Theme</span>
+					{#if $language === 'fr'}
+						<span class="font-['inter'] tracking-[1px]">Thème clair</span>
+					{:else}
+						<span class="font-['inter'] tracking-[1px]">Light Theme</span>
+					{/if}
+				{/if}
+			</button>
+			<button
+				class="items-center bg-transparent text-1em border-none cursor-pointer px-6 py-3 gap-2 row hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
+				on:click={() => toggleLanguage()}
+			>
+				{#if $language === 'fr'}
+					<img src="/logos/english.svg" alt="English" width="20" />
+					<span class="font-['inter'] tracking-[1px]">Traduire en Anglais</span>
+				{:else}
+					<img src="/logos/french.svg" alt="French" width="20" />
+					<span class="font-['inter'] tracking-[1px]">Translate in French</span>
 				{/if}
 			</button>
 		</div>
