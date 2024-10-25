@@ -35,6 +35,7 @@ export type Asset = string | { light: string; dark: string };
 export interface Item<S extends string = string> {
 	slug: S;
 	name: string;
+	nameFr?: string;
 	logo: Asset;
 	shortDescription: string;
 	shortDescriptionFr?: string;
@@ -55,10 +56,14 @@ export interface IconLink extends Link {
 
 export interface SkillCategory<S extends string = string> {
 	slug: S;
-	name: string;
+	name: {
+		en: string;
+		fr: string;
+	};
 }
 
-export interface Skill<S extends string = string> extends Omit<Item<S>, 'shortDescription'> {
+export interface Skill<S extends string = string>
+	extends Omit<Item<S>, 'shortDescription' | 'shortDescriptionFr'> {
 	color: string;
 	category?: SkillCategory;
 }

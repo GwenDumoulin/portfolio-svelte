@@ -85,12 +85,18 @@
 	{:else}
 		<div class="flex flex-col items-center overflow-x-hidden">
 			<Banner img={getAssetURL(data.skill.logo)}>
-				<MainTitle>{data.skill.name}</MainTitle>
+				<MainTitle>{$language === 'fr' ? data.skill.nameFr : data.skill.name}</MainTitle>
 			</Banner>
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
 					{#if data.skill.description}
-						<Markdown content={data.skill.description ?? 'This place is yet to be filled...'} />
+						<Markdown
+							content={data.skill.description && data.skill.descriptionFr
+								? $language === 'fr'
+									? data.skill.descriptionFr
+									: data.skill.description
+								: 'This place is yet to be filled...'}
+						/>
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />

@@ -44,7 +44,10 @@
 
 			const isSearched =
 				search.trim().length === 0 ||
-				project.name.trim().toLowerCase().includes(search.trim().toLowerCase());
+				project.name.trim().toLowerCase().includes(search.trim().toLowerCase()) ||
+				project.skills.some((tech) =>
+					tech.name.trim().toLowerCase().includes(search.trim().toLowerCase())
+				);
 
 			return isFiltered && isSearched;
 		});
