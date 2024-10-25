@@ -69,7 +69,7 @@ export const items: Array<Project> = [
 			from: new Date(2024, 5, 9),
 			to: new Date(2024, 6, 0)
 		},
-		skills: getSkills('reactjs', 'ts', 'tailwind', 'next'),
+		skills: getSkills('next', 'reactjs', 'ts', 'tailwind'),
 		type: 'Website',
 		screenshots: [
 			{
@@ -105,7 +105,7 @@ export const items: Array<Project> = [
 			from: new Date(2024, 8, 11),
 			to: new Date(2024, 8, 18)
 		},
-		skills: getSkills('reactjs', 'next', 'tailwind', 'js'),
+		skills: getSkills('next', 'reactjs', 'tailwind', 'js'),
 		type: 'Website',
 		screenshots: [
 			{
@@ -147,8 +147,24 @@ export const items: Array<Project> = [
 		type: 'Website',
 		screenshots: [
 			{
-				label: 'screen 1',
-				src: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60'
+				label: 'Home page',
+				src: `${base}/port-svelte.png`
+			},
+			{
+				label: 'Skills',
+				src: `${base}/port-svelte2.png`
+			},
+			{
+				label: 'Projects',
+				src: `${base}/port-svelte3.png`
+			},
+			{
+				label: 'Experience',
+				src: `${base}/port-svelte4.png`
+			},
+			{
+				label: 'Education',
+				src: `${base}/port-svelte5.png`
 			}
 		]
 	}

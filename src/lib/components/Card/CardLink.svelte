@@ -1,5 +1,8 @@
 <script lang="ts">
 	import UIcon from '../Icon/UIcon.svelte';
+	import { getPlatfromIcon } from '$lib/utils';
+	import Icon from '$lib/components/Icon/Icon.svelte';
+	import { Platform } from '$lib/types';
 
 	export let label: string;
 	export let to: string;
@@ -13,7 +16,11 @@
 	rel="noreferrer"
 	data-help={label}
 >
-	<UIcon icon="i-carbon-link" classes="text-[var(--secondary-text)]" />
+	{#if label === 'GitHub'}
+		<Icon icon={getPlatfromIcon(Platform.GitHub)} color={'var(--accent-text)'} size={'20px'} />
+	{:else}
+		<UIcon icon="i-carbon-link" classes="text-[var(--secondary-text)]" />
+	{/if}
 </a>
 
 <style lang="scss">
